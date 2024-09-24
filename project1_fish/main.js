@@ -44,44 +44,43 @@ gradient.append('stop').attr('offset', '0%').attr('stop-color', '#ffffff'); // T
 gradient.append('stop').attr('offset', '2.44%').attr('stop-color', '#a8e6ff'); // Start of the gradient
 
 // 0-5m
-gradient.append('stop').attr('offset', '2.44%').attr('stop-color', '#a8e6ff');
 gradient.append('stop').attr('offset', '15.71%').attr('stop-color', '#a8e6ff');
-gradient.append('stop').attr('offset', '18.71%').attr('stop-color', '#85d3f2'); // Blend Start
+gradient.append('stop').attr('offset', '17%').attr('stop-color', '#85d3f2'); // Blend Start
 gradient.append('stop').attr('offset', '32.48%').attr('stop-color', '#85d3f2');
 
 // 5-10m
 gradient.append('stop').attr('offset', '32.48%').attr('stop-color', '#85d3f2');
-gradient.append('stop').attr('offset', '35.48%').attr('stop-color', '#5fbce7'); // Blend Start
+gradient.append('stop').attr('offset', '34%').attr('stop-color', '#5fbce7'); // Blend Start
 gradient.append('stop').attr('offset', '45.05%').attr('stop-color', '#5fbce7');
 
 // 10-15m
 gradient.append('stop').attr('offset', '45.05%').attr('stop-color', '#5fbce7');
-gradient.append('stop').attr('offset', '48.05%').attr('stop-color', '#3aa4d8'); // Blend Start
+gradient.append('stop').attr('offset', '47%').attr('stop-color', '#3aa4d8'); // Blend Start
 gradient.append('stop').attr('offset', '60.62%').attr('stop-color', '#3aa4d8');
 
 // 15-20m
 gradient.append('stop').attr('offset', '60.62%').attr('stop-color', '#3aa4d8');
-gradient.append('stop').attr('offset', '63.62%').attr('stop-color', '#1d8abc'); // Blend Start
+gradient.append('stop').attr('offset', '62%').attr('stop-color', '#1d8abc'); // Blend Start
 gradient.append('stop').attr('offset', '79.30%').attr('stop-color', '#1d8abc');
 
 // 20-50m
 gradient.append('stop').attr('offset', '79.30%').attr('stop-color', '#1d8abc');
-gradient.append('stop').attr('offset', '82.30%').attr('stop-color', '#146b99'); // Blend Start
+gradient.append('stop').attr('offset', '81%').attr('stop-color', '#146b99'); // Blend Start
 gradient.append('stop').attr('offset', '84.81%').attr('stop-color', '#146b99');
 
 // 50-100m
 gradient.append('stop').attr('offset', '84.81%').attr('stop-color', '#146b99');
-gradient.append('stop').attr('offset', '87.81%').attr('stop-color', '#0f4d72'); // Blend Start
+gradient.append('stop').attr('offset', '86%').attr('stop-color', '#0f4d72'); // Blend Start
 gradient.append('stop').attr('offset', '88.31%').attr('stop-color', '#0f4d72');
 
 // 100-200m
 gradient.append('stop').attr('offset', '88.31%').attr('stop-color', '#0f4d72');
-gradient.append('stop').attr('offset', '91.31%').attr('stop-color', '#0b3451'); // Blend Start
+gradient.append('stop').attr('offset', '90%').attr('stop-color', '#0b3451'); // Blend Start
 gradient.append('stop').attr('offset', '97.92%').attr('stop-color', '#0b3451');
 
 // 200-1000m
 gradient.append('stop').attr('offset', '97.92%').attr('stop-color', '#0b3451');
-gradient.append('stop').attr('offset', '100.92%').attr('stop-color', '#071d36'); // Blend Start
+gradient.append('stop').attr('offset', '99%').attr('stop-color', '#071d36'); // Blend Start
 gradient.append('stop').attr('offset', '100%').attr('stop-color', '#071d36'); // End
 
 // Use the gradient as the background fill
@@ -116,11 +115,11 @@ depthSections.forEach((section) => {
 
 // Array of color, label, and position information for each group
 const groups = [
-  { label: 'Apex Predators', color: '#e57373', x: 1160 },
-  { label: 'Midwater Fish', color: '#ffa726', x: 1310 },
-  { label: 'Benthopelagic Fish', color: '#81c784', x: 1460 },
-  { label: 'Omnivorous/Herbivorous', color: '#fff176', x: 1640 },
-  { label: 'Other', color: '#ba68c8', x: 1790 },
+  { label: 'Top Predators', color: '#e57373', x: 1160 },
+  { label: 'Midwater Feeders', color: '#ffa726', x: 1310 },
+  { label: 'Seafloor Hunters', color: '#81c784', x: 1460 },
+  { label: 'Plant Eaters', color: '#fff176', x: 1640 },
+  { label: 'Miscellaneous', color: '#ba68c8', x: 1790 },
 ];
 
 // Add a group to contain the labels
@@ -181,17 +180,17 @@ const colorScale = d3
 function mapGroupLabel(ecologicalGroup) {
   switch (ecologicalGroup) {
     case 'Apex Predators':
-      return 'Apex Predators';
+      return 'Top Predators';
     case 'Midwater Fish':
-      return 'Midwater Fish';
+      return 'Midwater Feeders';
     case 'Benthopelagic Fish':
-      return 'Benthopelagic Fish';
+      return 'Seafloor Hunters';
     case 'Omnivorous/Herbivorous':
     case 'Omnivorous/Herbivorous Fish':
-      return 'Omnivorous/Herbivorous';
+      return 'Plant Eaters';
     case 'Other Ecological Roles':
     default:
-      return 'Other';
+      return 'Miscellaneous';
   }
 }
 
@@ -247,3 +246,13 @@ d3.json('final_data.json').then(function (data) {
       // Optionally add tooltip functionality here
     });
 });
+
+// Add the "5393m" label at the bottom
+svg
+  .append('text')
+  .attr('x', 10) // X 좌표는 필요에 따라 조정하세요
+  .attr('y', 6140) // y 좌표는 depthSections의 마지막 yEnd 값에 맞춤
+  .attr('fill', '#ed8645') // 텍스트 색상
+  .attr('font-size', '16px') // 텍스트 크기
+  .style('font-family', 'Comfortaa')
+  .text('5393m'); // 표시할 텍스트
